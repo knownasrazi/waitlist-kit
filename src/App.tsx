@@ -1,13 +1,17 @@
-﻿export default function App() {
+import { useState } from "react";
+export default function App(){
+  const [email,setEmail]=useState(""); const [count,setCount]=useState(128);
+  function join(){ if(!email.includes("@")) return alert("Enter email"); setCount(c=>c+1); setEmail(""); }
   return (
-    <main className="min-h-screen bg-[#fdfcfa] text-[#1a1a1a]">
-      <div className="mx-auto max-w-3xl px-6 py-24">
-        <p className="text-sm tracking-widest text-[#9a9590]">waitlist-kit</p>
-        <h1 className="mt-2 text-4xl font-light tracking-tight">Collect your first 1000.</h1>
-        <p className="mt-4 max-w-prose text-[#5a5754]">Waitlist kit with email capture, referral, and Resend-ready API.</p>
-        <div className="mt-8 rounded-2xl border border-[#ebe7e0] bg-white p-6">
-          <p className="text-sm text-[#9a9590]">Clean aesthetic - built for vibe coders.</p>
+    <main className="bg-[#fdfcfa] min-h-screen text-[#1a1a1a]">
+      <div className="mx-auto max-w-md px-6 py-16 text-center">
+        <h1 className="text-3xl font-light">waitlist-kit</h1>
+        <p className="mt-2 text-[#5a5754]">Collect your first 1000 — {count} already joined.</p>
+        <div className="mt-6 flex gap-2">
+          <input value={email} onChange={e=>setEmail(e.target.value)} placeholder="you@example.com" className="flex-1 rounded-xl border border-[#ebe7e0] px-3 py-2 text-sm" />
+          <button onClick={join} className="rounded-xl bg-[#1a1a1a] px-4 py-2 text-sm text-white">Join</button>
         </div>
+        <p className="mt-3 text-xs text-[#9a9590]">Resend-ready API at /api/waitlist</p>
       </div>
     </main>
   );
